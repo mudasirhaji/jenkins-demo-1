@@ -231,7 +231,7 @@ node {
      ]
     ]
 
-    slackSend(channel: 'jenkins', attachments: error_attachments)
+    //slackSend(channel: 'jenkins', attachments: error_attachments)
    } else {
 
     def attachments = [
@@ -274,7 +274,7 @@ node {
      ]
     ]
 
-    slackSend(channel: 'jenkins', attachments: attachments)
+    //slackSend(channel: 'jenkins', attachments: attachments)
    }
 
    cleanWs();
