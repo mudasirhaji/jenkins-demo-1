@@ -39,6 +39,19 @@ node {
 
    }
 
+
+  stage("Code Style Check") {
+
+    try {
+     echo "Check Code Style to have a standard code.."
+    } catch (err) {
+     stage_title = "Code Style Check"
+     error_message = err.getMessage()
+     throw err
+    }
+
+   }
+
   stage('SonarQube') {
 
     try {
