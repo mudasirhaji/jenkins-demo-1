@@ -71,7 +71,7 @@ node {
 
     try {
       echo "Create Docker..."
-      sh 'docker build .'
+      //sh 'docker build .'
     } catch (err) {
      stage_title = "SonarQube"
      error_message = err.getMessage()
