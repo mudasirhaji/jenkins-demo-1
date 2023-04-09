@@ -94,19 +94,23 @@ node {
 
    }
 
+   if (env.BRANCH_NAME == 'production' ) {
 
-  stage('Deploy'){
-    
-    try {
-      echo "Deploy composer.json in Server..."
-      sh 'ssh mudasir@34.243.222.144 "ls -l && cat composer.json  && df -h " '
-    } catch (err) {
-     stage_title = "Deploy"
-     error_message = err.getMessage()
-     throw err
-    }
+    stage('Deploy'){
+        
+        try {
+          echo "Deploy composer.json in Server..."
+          sh 'ssh mudasir@34.243.222.144 "ls -l && cat composer.json  && df -h " '
+        } catch (err) {
+        stage_title = "Deploy"
+        error_message = err.getMessage()
+        throw err
+        }
 
-  }
+      }
+
+   }
+  
    
    if (env.BRANCH_NAME == 'develop' ) {
    
@@ -155,7 +159,7 @@ node {
    }
 
 
-     if (env.BRANCH_NAME == 'main' ) {
+     if (env.BRANCH_NAME == 'production' ) {
    
 
       stage('Deploy Pro Servers') {
