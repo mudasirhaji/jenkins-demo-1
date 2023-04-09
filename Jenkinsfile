@@ -100,7 +100,6 @@ node {
         
         try {
           echo "Deploy composer.json in Server..."
-          sh 'ssh mudasir@34.243.222.144 "ls -l && cat composer.json  && df -h " '
         } catch (err) {
         stage_title = "Deploy"
         error_message = err.getMessage()
