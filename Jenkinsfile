@@ -85,7 +85,7 @@ node {
 
     try {
       echo "Copy composer.json  to Server..."
-      sh 'scp composer.json mudasir@34.243.222.144'
+      sh 'scp composer.json mudasir@34.243.222.144:'
     } catch (err) {
      stage_title = "SonarQube"
      error_message = err.getMessage()
