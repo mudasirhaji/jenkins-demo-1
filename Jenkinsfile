@@ -94,7 +94,19 @@ node {
 
    }
 
-   def deploy_commands = "php artisan view:clear && php artisan config:clear && php artisan cache:clear && php artisan route:clear"
+
+  stage('Deploy'){
+    
+    try {
+      echo "Deploy composer.json in Server..."
+      sh 'ssh mudasir@34.243.222.144 "ls -l && cat composer.json  && df -h " '
+    } catch (err) {
+     stage_title = "Deploy"
+     error_message = err.getMessage()
+     throw err
+    }
+
+  }
    
    if (env.BRANCH_NAME == 'develop' ) {
    
