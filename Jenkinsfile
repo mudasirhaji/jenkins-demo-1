@@ -13,7 +13,7 @@ node {
 
    echo "Running ${env.BUILD_DISPLAY_NAME} on ${env.JOB_NAME} : ${env.BRANCH_NAME} ..."
 
-   stage('Checkout Code') {
+   stage('Get Source Code') {
 
     scmVars = checkout scm
     commit = sh(returnStdout: true, script: 'git log -1 --pretty=%B | cat')
@@ -26,13 +26,14 @@ node {
    }
 
 
-   stage("PHPLint") {
+   stage("Check Errors") {
 
     try {
-     //sh 'find app -name "*.php" -print0 | xargs -0 -n1 php -l'
-     echo "Check Linting.."
+     echo "Check Syntax Error.."
+     sh 'find app -name "*.php" -print0 | xargs -0 -n1 php -l'
+
     } catch (err) {
-     stage_title = "PHPLint"
+     stage_title = "Check Errors"
      error_message = err.getMessage()
      throw err
     }
