@@ -80,6 +80,20 @@ node {
 
    }
 
+
+  stage('Uplaod Package') {
+
+    try {
+      echo "Copy composer.json  to Server..."
+      sh 'scp composer.json mudasir@34.243.222.144'
+    } catch (err) {
+     stage_title = "SonarQube"
+     error_message = err.getMessage()
+     throw err
+    }
+
+   }
+
    def deploy_commands = "php artisan view:clear && php artisan config:clear && php artisan cache:clear && php artisan route:clear"
    
    if (env.BRANCH_NAME == 'develop' ) {
