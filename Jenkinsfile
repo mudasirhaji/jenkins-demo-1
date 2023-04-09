@@ -66,6 +66,20 @@ node {
 
    }
 
+
+  stage('Create Docker') {
+
+    try {
+      echo "Create Docker..."
+      sh 'docker build .'
+    } catch (err) {
+     stage_title = "SonarQube"
+     error_message = err.getMessage()
+     throw err
+    }
+
+   }
+
    def deploy_commands = "php artisan view:clear && php artisan config:clear && php artisan cache:clear && php artisan route:clear"
    
    if (env.BRANCH_NAME == 'develop' ) {
